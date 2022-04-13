@@ -3,7 +3,7 @@
 public class Apple : MonoBehaviour
 {
     private GameManager _gameManager;
-    private float _bottomY = -20f;
+    private readonly float _bottomY = -20f;
 
     private void Awake()
     {

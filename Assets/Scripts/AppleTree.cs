@@ -21,14 +21,14 @@ public class AppleTree : MonoBehaviour
     public float chanceToEnemyAppleDrop = 0.02f;
 
 
-    void Start()
+    private void Start()
     {
         // Сбрасывать яблоки раз в секунду
         Invoke("DropApple", 2f);
     }
 
    
-    void DropApple()
+    private void DropApple()
     {
         if(Random.value < chanceToEnemyAppleDrop)
         {
@@ -44,7 +44,7 @@ public class AppleTree : MonoBehaviour
         }
     }
 
-    void Update()
+    private void Update()
     {
         // Простое перемещение
         Vector3 pos = transform.position;
@@ -62,7 +62,7 @@ public class AppleTree : MonoBehaviour
         }
     }
 
-     void FixedUpdate()
+     private void FixedUpdate()
     {
         // Случайная смена направления привязана ко времени, потому что выполняется в FixedUpdate
         if (Random.value < chanceToChangeDirections)
