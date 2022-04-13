@@ -4,11 +4,11 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    private GameObject _basketPrefab;
+    [SerializeField] private GameObject _basketPrefab;
 
-    private int _basketsCount = 3;
+    private readonly int _basketsCount = 3;
     private Vector3 _basketPosition = Vector3.up * -12f;
-    [SerializeField] private List<GameObject> _baskets;
+    private List<GameObject> _baskets;
 
     private void Awake()
     {
