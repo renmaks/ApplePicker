@@ -2,7 +2,7 @@
 
 public class EnemyApple : MonoBehaviour
 {
-    private float _bottomY = -20f;
+    private readonly float _bottomY = -20f;
 
 
     void Update()

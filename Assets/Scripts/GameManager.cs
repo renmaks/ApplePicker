@@ -6,7 +6,8 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject _basketPrefab;
 
-    private readonly int _basketsCount = 3;
+    public static readonly int BASKETS_COUNT = 3;
+
     private Vector3 _basketPosition = Vector3.up * -12f;
     private List<GameObject> _baskets;
 
@@ -17,7 +18,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < _basketsCount; i++)
+        for (int i = 0; i < BASKETS_COUNT; i++)
         {
             GameObject basket = Instantiate<GameObject>(_basketPrefab);
             basket.transform.position = _basketPosition;
@@ -30,12 +31,6 @@ public class GameManager : MonoBehaviour
 
     public void AppleDestroyed()
     {
-        GameObject[] tAppleArray = GameObject.FindGameObjectsWithTag("Apple");
-        foreach (GameObject tApple in tAppleArray)
-        {
-            Destroy(tApple);
-        }
-
         DestroyCurrentBasket();
     }
 
@@ -59,5 +54,8 @@ public class GameManager : MonoBehaviour
         }
 
         Destroy(tBasketGO);
+
+        UIManager.SendBasketDestroy(_baskets.Count);
     }
+
 }

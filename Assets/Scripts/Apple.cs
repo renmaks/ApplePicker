@@ -17,8 +17,11 @@ public class Apple : MonoBehaviour
 
     private void OutOfYBound(float bottomBound)
     {
-        if(transform.position.y <= bottomBound)
-        _gameManager.AppleDestroyed();
+        if (transform.position.y <= bottomBound)
+        {
+            Destroy(gameObject);
+            _gameManager.AppleDestroyed();
+        }
     }
 
 }

@@ -3,13 +3,16 @@ using UnityEngine.UI;
 
 public class YourScore : MonoBehaviour
 {
-    public static Text yourScore;
+    private Text _yourScore;
 
-     void Start()
+     private void Awake()
     {
-        GameObject go = this.gameObject;
-        yourScore = go.GetComponent<Text>();
-        yourScore.text = "Your Score: " + Basket.scoreGT.text;
+        _yourScore = GetComponent<Text>();
+    }
+
+    private void Start()
+    {
+        _yourScore.text = "Your Score: " + UIScore.SCORE;
     }
 
 }
