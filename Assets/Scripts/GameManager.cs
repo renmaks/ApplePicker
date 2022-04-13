@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < BASKETS_COUNT; i++)
         {
-            GameObject basket = Instantiate<GameObject>(_basketPrefab);
+            GameObject basket = Instantiate(_basketPrefab);
             basket.transform.position = _basketPosition * _basketYLevel;
             _baskets.Add(basket);
             basket.SetActive(false);

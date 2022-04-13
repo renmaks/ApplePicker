@@ -7,9 +7,9 @@ public class AppleTree : MonoBehaviour
 
     private float _speed = 10f;
     private readonly float _leftAndRightEdge = 10f;
-    private readonly float _chanceToChangeDirections = 0.1f;
+    private readonly float _chanceToChangeDirections = 0.05f;
     private readonly float _secondsBetweenApplesDrops = 1f;
-    private readonly float _chanceToEnemyAppleDrop = 0.02f;
+    private readonly float _chanceToEnemyAppleDrop = 0.03f;
 
     private void Start()
     {
@@ -20,7 +20,7 @@ public class AppleTree : MonoBehaviour
     {
         if(Random.value < _chanceToEnemyAppleDrop)
         {
-            GameObject enemyApple = Instantiate<GameObject>(_enemyAppleFrefab);
+            GameObject enemyApple = Instantiate(_enemyAppleFrefab);
             enemyApple.transform.position = transform.position;
             Invoke(nameof(DropApple), _secondsBetweenApplesDrops);
         }

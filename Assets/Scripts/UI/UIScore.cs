@@ -15,6 +15,7 @@ public class UIScore : MonoBehaviour
 
     private void Start()
     {
+        SCORE = 0;
         _score.text = "0";
     }
 
