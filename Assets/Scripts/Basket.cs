@@ -4,10 +4,13 @@ public class Basket : MonoBehaviour
 {
     private AudioSource _hitSound;
     private GameManager _gameManager;
+
     private Vector2 leftBot;
     private Vector2 rightTop;
+
     private float x_left;
     private float x_right;
+    private readonly float xLimit = 2f;
 
     private void Awake()
     {
@@ -26,7 +29,7 @@ public class Basket : MonoBehaviour
         Vector2 mousePos3D = Camera.main.ScreenToWorldPoint(mousePos2D);
 
         Vector2 pos = transform.position;
-        pos.x = Mathf.Clamp(mousePos3D.x, x_left, x_right);
+        pos.x = Mathf.Clamp(mousePos3D.x, x_left + xLimit, x_right - xLimit);
         transform.position = pos;
     }
 
