@@ -66,8 +66,8 @@ public class Basket : MonoBehaviour
         {
             Destroy(collidedWith);
 
-            ApplePicker apScript = Camera.main.GetComponent<ApplePicker>();
-            apScript.EnemyAppleDestroyed();
+            GameManager gameManager = Camera.main.GetComponent<GameManager>();
+            gameManager.EnemyAppleDestroyed();
         }
     }
 

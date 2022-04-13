@@ -7,12 +7,12 @@ public class ApplePicker : MonoBehaviour
 {
     [Header("Set in Inspector")]
     [SerializeField] private GameObject basketPrefab;
-    
+
     private int numBaskets = 3;
     private float basketBottomY = -14f;
     private float basketspacingY = 2f;
     private List<GameObject> basketList;
-    private GameObject hp;
+    [SerializeField] private GameObject hp;
     private Text hpCount;
 
 

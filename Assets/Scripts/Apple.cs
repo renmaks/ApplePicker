@@ -2,19 +2,23 @@
 
 public class Apple : MonoBehaviour
 {
-    public static float bottomY = -20f;
+    private GameManager _gameManager;
+    private float _bottomY = -20f;
+
+    private void Awake()
+    {
+        _gameManager = Camera.main.GetComponent<GameManager>();
+    }
 
     void Update()
     {
-        if(transform.position.y < bottomY)
-        {
-            Destroy(this.gameObject);
+        OutOfYBound(_bottomY);
+    }
 
-            // Получить ссылку на компонент ApplePicker главной камеры Main Camera
-            ApplePicker apScript = Camera.main.GetComponent<ApplePicker>();
-            // Вызвать общедоступный метод AppleDestroyed() из apScript
-            apScript.AppleDestroyed();
-        }
+    private void OutOfYBound(float bottomBound)
+    {
+        if(transform.position.y <= bottomBound)
+        _gameManager.AppleDestroyed();
     }
 
 }

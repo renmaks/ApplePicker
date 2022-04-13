@@ -1,15 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EnemyApple : MonoBehaviour
 {
-    public static float bottomY = -20f;
+    private float _bottomY = -20f;
 
 
     void Update()
     {
-        if (transform.position.y < bottomY)
+        if (transform.position.y < _bottomY)
         {
             Destroy(this.gameObject);
         }
