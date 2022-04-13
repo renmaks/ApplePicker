@@ -138,7 +138,6 @@ GameObject:
   - component: {fileID: 44618205}
   - component: {fileID: 44618209}
   - component: {fileID: 44618208}
-  - component: {fileID: 44618210}
   m_Layer: 5
   m_Name: Exit_Butt
   m_TagString: Untagged
@@ -210,8 +209,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 44618210}
-        m_TargetAssemblyTypeName: 
+      - m_Target: {fileID: 876523767}
+        m_TargetAssemblyTypeName: UIMenuButtons, Assembly-CSharp
         m_MethodName: ExitGame
         m_Mode: 1
         m_Arguments:
@@ -294,18 +293,6 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
---- !u!114 &44618210
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 44618203}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91e8121b83cca94439976e5376d14bfa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &247936606
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,7 +390,6 @@ GameObject:
   - component: {fileID: 257678011}
   - component: {fileID: 257678015}
   - component: {fileID: 257678014}
-  - component: {fileID: 257678016}
   m_Layer: 5
   m_Name: Restart_Butt
   m_TagString: Untagged
@@ -475,8 +461,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 257678016}
-        m_TargetAssemblyTypeName: 
+      - m_Target: {fileID: 876523767}
+        m_TargetAssemblyTypeName: UIMenuButtons, Assembly-CSharp
         m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
@@ -559,18 +545,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &257678016
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 257678009}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84835aebc33d4d54d87a26d2dd840203, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &418347283
 GameObject:
   m_ObjectHideFlags: 0
@@ -850,6 +824,7 @@ GameObject:
   - component: {fileID: 876523765}
   - component: {fileID: 876523764}
   - component: {fileID: 876523763}
+  - component: {fileID: 876523767}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -938,6 +913,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &876523767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 876523762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e88f2f364d8515b479925954c98fed06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &921642817
 GameObject:
   m_ObjectHideFlags: 0

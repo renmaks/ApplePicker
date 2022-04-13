@@ -3,10 +3,12 @@
 public class Basket : MonoBehaviour
 {
     private AudioSource _hitSound;
+    private GameManager _gameManager;
 
      private void Awake()
     {
         _hitSound = GetComponent<AudioSource>();
+        _gameManager = Camera.main.GetComponent<GameManager>();
     }
 
     private void Update()
@@ -35,9 +37,7 @@ public class Basket : MonoBehaviour
         if (collidedWith.CompareTag("Enemy"))
         {
             Destroy(collidedWith);
-
-            GameManager gameManager = Camera.main.GetComponent<GameManager>();
-            gameManager.AppleDestroyed();
+            _gameManager.AppleDestroyed();
         }
     }
 

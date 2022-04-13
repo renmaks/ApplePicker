@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class UIScore : MonoBehaviour
 {
     public static int SCORE { get; private set; } = 0;
+
     private Text _score;
 
     private void Awake()

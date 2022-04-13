@@ -8,7 +8,8 @@ public class GameManager : MonoBehaviour
 
     public static readonly int BASKETS_COUNT = 3;
 
-    private Vector3 _basketPosition = Vector3.up * -12f;
+    private Vector3 _basketPosition = Vector3.up;
+    private readonly float _basketYLevel = -12f;
     private List<GameObject> _baskets;
 
     private void Awake()
@@ -21,7 +22,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < BASKETS_COUNT; i++)
         {
             GameObject basket = Instantiate<GameObject>(_basketPrefab);
-            basket.transform.position = _basketPosition;
+            basket.transform.position = _basketPosition * _basketYLevel;
             _baskets.Add(basket);
             basket.SetActive(false);
         }

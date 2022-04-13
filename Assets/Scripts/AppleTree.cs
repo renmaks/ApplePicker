@@ -2,72 +2,57 @@
 
 public class AppleTree : MonoBehaviour
 {
-    [Header("Set in Inspector")]
-    // Шаблон для создания яблок
-    public GameObject applePrefab;
-    public GameObject enemyAppleFrefab;
+    [SerializeField] private GameObject _applePrefab;
+    [SerializeField] private GameObject _enemyAppleFrefab;
 
-    // Скорость движения яблони
-    public float speed = 10f;
-
-    // Расстояние, на котором должно изменяться направление яблони
-    public float leftAndRightEdge = 10f;
-
-    // Вероятность случайного изменения направления движения
-    public float chanceToChangeDirections = 0.1f;
-
-    // Частота создания экземпляров яблок
-    public float secondsBetweenApplesDrops = 1f;
-    public float chanceToEnemyAppleDrop = 0.02f;
-
+    private float _speed = 10f;
+    private readonly float _leftAndRightEdge = 10f;
+    private readonly float _chanceToChangeDirections = 0.1f;
+    private readonly float _secondsBetweenApplesDrops = 1f;
+    private readonly float _chanceToEnemyAppleDrop = 0.02f;
 
     private void Start()
     {
-        // Сбрасывать яблоки раз в секунду
-        Invoke("DropApple", 2f);
+        Invoke(nameof(DropApple), 2f);
     }
 
-   
     private void DropApple()
     {
-        if(Random.value < chanceToEnemyAppleDrop)
+        if(Random.value < _chanceToEnemyAppleDrop)
         {
-            GameObject enemyApple = Instantiate<GameObject>(enemyAppleFrefab);
+            GameObject enemyApple = Instantiate<GameObject>(_enemyAppleFrefab);
             enemyApple.transform.position = transform.position;
-            Invoke("DropApple", secondsBetweenApplesDrops);
+            Invoke(nameof(DropApple), _secondsBetweenApplesDrops);
         }
         else
         {
-            GameObject apple = Instantiate<GameObject>(applePrefab);
+            GameObject apple = Instantiate<GameObject>(_applePrefab);
             apple.transform.position = transform.position;
-            Invoke("DropApple", secondsBetweenApplesDrops);
+            Invoke(nameof(DropApple), _secondsBetweenApplesDrops);
         }
     }
 
     private void Update()
     {
-        // Простое перемещение
         Vector3 pos = transform.position;
-        pos.x += speed * Time.deltaTime;
+        pos.x += _speed * Time.deltaTime;
         transform.position = pos;
 
-        // Изменение направления
-        if (pos.x < -leftAndRightEdge)
+        if (pos.x < -_leftAndRightEdge)
         {
-            speed = Mathf.Abs(speed); // Начать движение вправо
+            _speed = Mathf.Abs(_speed); // Turn right
         }
-        else if (pos.x > leftAndRightEdge)
+        else if (pos.x > _leftAndRightEdge) // Turn left
         {
-            speed = -Mathf.Abs(speed); // Начать движение влево
+            _speed = -Mathf.Abs(_speed);
         }
     }
 
      private void FixedUpdate()
     {
-        // Случайная смена направления привязана ко времени, потому что выполняется в FixedUpdate
-        if (Random.value < chanceToChangeDirections)
+        if (Random.value < _chanceToChangeDirections)
         {
-            speed *= -1; // Изменить направление
+            _speed *= -1; // Change direction
         }
     }
 
