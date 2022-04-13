@@ -930,6 +930,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114937166624226710, guid: f5cd20625fe31bc4f8e33d3221d9aaab,
         type: 3}
+      propertyPath: _speed
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 114937166624226710, guid: f5cd20625fe31bc4f8e33d3221d9aaab,
+        type: 3}
       propertyPath: applePrefab
       value: 
       objectReference: {fileID: 3530521949512515517, guid: 0da68d0e743c22f49bbd9f36bddaf036,

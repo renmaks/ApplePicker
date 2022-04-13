@@ -1,19 +1,25 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class AppleTree : MonoBehaviour
 {
     [SerializeField] private GameObject _applePrefab;
     [SerializeField] private GameObject _enemyAppleFrefab;
 
-    private float _speed = 10f;
+    
     private readonly float _leftAndRightEdge = 10f;
-    private readonly float _chanceToChangeDirections = 0.05f;
-    private readonly float _secondsBetweenApplesDrops = 1f;
-    private readonly float _chanceToEnemyAppleDrop = 0.03f;
+    private readonly float _chanceToChangeDirections = 0.01f;
+    private readonly float _difficultyScale = 0.09f;
+    private readonly float _timer = 3.5f;
+
+    private float _secondsBetweenApplesDrops = 1f;
+    private float _chanceToEnemyAppleDrop = 0.03f;
+    private float _speed = 15f;
 
     private void Start()
     {
         Invoke(nameof(DropApple), 2f);
+        StartCoroutine(nameof(DoCheck));
     }
 
     private void DropApple()
@@ -26,7 +32,7 @@ public class AppleTree : MonoBehaviour
         }
         else
         {
-            GameObject apple = Instantiate<GameObject>(_applePrefab);
+            GameObject apple = Instantiate(_applePrefab);
             apple.transform.position = transform.position;
             Invoke(nameof(DropApple), _secondsBetweenApplesDrops);
         }
@@ -46,6 +52,7 @@ public class AppleTree : MonoBehaviour
         {
             _speed = -Mathf.Abs(_speed);
         }
+
     }
 
      private void FixedUpdate()
@@ -53,6 +60,20 @@ public class AppleTree : MonoBehaviour
         if (Random.value < _chanceToChangeDirections)
         {
             _speed *= -1; // Change direction
+        }
+    }
+
+    IEnumerator DoCheck()
+    {
+        for (; ; )
+        {
+            if(_chanceToEnemyAppleDrop < 0.38f)
+            _chanceToEnemyAppleDrop += _difficultyScale;
+
+            if (_secondsBetweenApplesDrops > 0.3f)
+                _secondsBetweenApplesDrops -= _difficultyScale;
+
+            yield return new WaitForSeconds(_timer);
         }
     }
 
