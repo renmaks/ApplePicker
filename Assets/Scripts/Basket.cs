@@ -5,21 +5,21 @@ public class Basket : MonoBehaviour
     private AudioSource _hitSound;
     private GameManager _gameManager;
 
-    private Vector2 leftBot;
-    private Vector2 rightTop;
+    private Vector2 _leftBot;
+    private Vector2 _rightTop;
 
-    private float x_left;
-    private float x_right;
-    private readonly float xLimit = 2f;
+    private float _xLeft;
+    private float _xRight;
+    private readonly float _xLimit = 2f;
 
     private void Awake()
     {
         _hitSound = GetComponent<AudioSource>();
         _gameManager = Camera.main.GetComponent<GameManager>();
-        leftBot = Camera.main.ViewportToWorldPoint(new Vector3(0, 0));
-        rightTop = Camera.main.ViewportToWorldPoint(new Vector3(1, 1));
-        x_left = leftBot.x;
-        x_right = rightTop.x;
+        _leftBot = Camera.main.ViewportToWorldPoint(new Vector3(0, 0));
+        _rightTop = Camera.main.ViewportToWorldPoint(new Vector3(1, 1));
+        _xLeft = _leftBot.x;
+        _xRight = _rightTop.x;
     }
 
     private void Update()
@@ -29,7 +29,7 @@ public class Basket : MonoBehaviour
         Vector2 mousePos3D = Camera.main.ScreenToWorldPoint(mousePos2D);
 
         Vector2 pos = transform.position;
-        pos.x = Mathf.Clamp(mousePos3D.x, x_left + xLimit, x_right - xLimit);
+        pos.x = Mathf.Clamp(mousePos3D.x, _xLeft + _xLimit, _xRight - _xLimit);
         transform.position = pos;
     }
 
