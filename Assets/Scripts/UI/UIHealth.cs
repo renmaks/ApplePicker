@@ -14,7 +14,7 @@ public class UIHealth : MonoBehaviour
 
     private void ChangeHPText(int hp)
     {
-        _hp.text = "HP: " + hp;
+        _hp.text = $"HP: {hp}";
     }
 
     private void OnDisable()

@@ -14,7 +14,7 @@ public class AppleTree : MonoBehaviour
 
     private float _secondsBetweenApplesDrops = 1f;
     private float _chanceToEnemyAppleDrop = 0.03f;
-    private float _speed = 15f;
+    private float _speed = 17f;
 
     private void Start()
     {
@@ -70,8 +70,11 @@ public class AppleTree : MonoBehaviour
             if(_chanceToEnemyAppleDrop < 0.39f)
             _chanceToEnemyAppleDrop += _difficultyScale;
 
-            if (_secondsBetweenApplesDrops > 0.3f)
+            if (_secondsBetweenApplesDrops > 0.27f)
                 _secondsBetweenApplesDrops -= _difficultyScale;
+
+            if (_chanceToEnemyAppleDrop >= 0.39f && _secondsBetweenApplesDrops <= 0.27f)
+                StopCoroutine(nameof(DoCheck));
 
             yield return new WaitForSeconds(_timer);
         }
