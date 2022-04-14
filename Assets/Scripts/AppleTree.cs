@@ -67,7 +67,7 @@ public class AppleTree : MonoBehaviour
     {
         for (; ; )
         {
-            if(_chanceToEnemyAppleDrop < 0.38f)
+            if(_chanceToEnemyAppleDrop < 0.39f)
             _chanceToEnemyAppleDrop += _difficultyScale;
 
             if (_secondsBetweenApplesDrops > 0.3f)
