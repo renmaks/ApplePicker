@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour
 
     public void SaveRecord()
     {
-        SaveData data = new SaveData
+        SaveData data = new()
         {
             record = _highScore,
             playerName = PLAYER_NAME
