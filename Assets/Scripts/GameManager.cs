@@ -89,37 +89,43 @@ public class GameManager : MonoBehaviour
         PLAYER_NAME = name;
     }
 
-    [System.Serializable]
-    class SaveData
-    {
-        public int record;
-        public string playerName;
-    }
+    //[System.Serializable]
+    //public struct SaveData
+    //{
+    //    public int Record;
+    //    public string PlayerName;
 
-    public void SaveRecord()
-    {
-        SaveData data = new()
-        {
-            record = _highScore,
-            playerName = PLAYER_NAME
-        };
+    //    public SaveData(int score, string name)
+    //    {
+    //        PlayerName = name;
+    //        Record = score;
+    //    }
+    //}
 
-        string json = JsonUtility.ToJson(data);
+    //public void SaveRecord()
+    //{
+    //    SaveData data = new()
+    //    {
+    //        Record = _highScore,
+    //        PlayerName = PLAYER_NAME
+    //    };
 
-        File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
-    }
+    //    string json = JsonUtility.ToJson(data);
 
-    public void LoadRecord()
-    {
-        string path = Application.persistentDataPath + "/savefile.json";
-        if (File.Exists(path))
-        {
-            string json = File.ReadAllText(path);
-            SaveData data = JsonUtility.FromJson<SaveData>(json);
+    //    File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
+    //}
 
-            _highScore = data.record;
-            PLAYER_NAME = data.playerName;
-        }
-    }
+    //public void LoadRecord()
+    //{
+    //    string path = Application.persistentDataPath + "/savefile.json";
+    //    if (File.Exists(path))
+    //    {
+    //        string json = File.ReadAllText(path);
+    //        SaveData data = JsonUtility.FromJson<SaveData>(json);
+
+    //        _highScore = data.Record;
+    //        PLAYER_NAME = data.PlayerName;
+    //    }
+    //}
 
 }
