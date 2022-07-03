@@ -15,6 +15,11 @@ public class UIMenuButtons : MonoBehaviour
         }
     }
 
+    public void RestartGame()
+    {
+        SceneManager.LoadScene("_Scene_0");
+    }
+
     public void ExitGame()
     {
         Application.Quit();

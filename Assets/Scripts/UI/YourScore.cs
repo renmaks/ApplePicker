@@ -3,16 +3,16 @@ using UnityEngine.UI;
 
 public class YourScore : MonoBehaviour
 {
-    public static Text _yourScore { get; private set; }
+    public static Text UrScore { get; private set; }
 
      private void Awake()
     {
-        _yourScore = GetComponent<Text>();
+        UrScore = GetComponent<Text>();
     }
 
     public static void Start(int score)
     {
-        _yourScore.text = $"Your Score: {score}";
+        UrScore.text = $"Your Score: {score}";
     }
 
 }
