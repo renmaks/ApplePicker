@@ -8,7 +8,7 @@ public class UIMenuButtons : MonoBehaviour
 
     public void StartGame()
     {
-        if (field.text.Length != 0)
+        if (field.text.Length == 3 && !field.text.Contains(" "))
         {
             GameManager.ApplyPlayerName(field.text);
             SceneManager.LoadScene("_Scene_0");

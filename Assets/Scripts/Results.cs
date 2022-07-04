@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -46,7 +47,7 @@ public class Results
 
     public void SaveAllRecords()
     {
-        string json = JsonUtility.ToJson(_playersResults);
+        string json = JsonConvert.SerializeObject(_playersResults, Formatting.Indented);
 
         File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
     }

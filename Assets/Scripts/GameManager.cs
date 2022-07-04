@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,12 +9,14 @@ public class GameManager : MonoBehaviour
     public static readonly int BASKETS_COUNT = 3;
     public static string PLAYER_NAME { get; private set; }
     public static int HIGHSCORE;
+    public static bool isRecord;
+    public static int SCORE { get; private set; }
 
     private int _score = 0;
     private Vector3 _basketPosition = Vector3.up;
     private readonly float _basketYLevel = -12f;
     private List<GameObject> _baskets;
-    Results records = new Results();
+    readonly Results records = new();
 
     private void Awake()
     {
@@ -28,6 +29,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         _score = 0;
+        isRecord = false;
         UIScore.ChangeScoreText(_score);
         UIHighScore.ChangeHighScoreText(HIGHSCORE);
 
@@ -60,6 +62,7 @@ public class GameManager : MonoBehaviour
 
         if (_baskets.Count == 0)
         {
+            SCORE = _score;
             records.SaveRecord(PLAYER_NAME, HIGHSCORE);
             SceneManager.LoadScene("_Lose_Screen");
         }
@@ -85,6 +88,7 @@ public class GameManager : MonoBehaviour
         UIScore.ChangeScoreText(_score);
         if (_score > HIGHSCORE)
         {
+            isRecord = true;
             HIGHSCORE = _score;
             UIHighScore.ChangeHighScoreText(HIGHSCORE);
         }
