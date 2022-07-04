@@ -5,19 +5,21 @@ using UnityEngine.UI;
 public class UIMenuButtons : MonoBehaviour
 {
     [SerializeField] private InputField field;
+    [SerializeField] private new string name;
 
     public void StartGame()
     {
         if (field.text.Length == 3 && !field.text.Contains(" "))
         {
-            GameManager.ApplyPlayerName(field.text);
+            name = field.text;
+            GameManager.ApplyPlayerName(name);
             SceneManager.LoadScene("_Scene_0");
         }
     }
 
-    public void RestartGame()
+    public void BackToMenu()
     {
-        SceneManager.LoadScene("_Scene_0");
+        SceneManager.LoadScene("_Main_Menu");
     }
 
     public void ExitGame()

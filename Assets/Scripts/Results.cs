@@ -5,7 +5,10 @@ using Newtonsoft.Json;
 [System.Serializable]
 public struct SaveData
 {
+    [JsonProperty("HighScore")]
     public int Record { get; }
+
+    [JsonProperty("PlayerName")]
     public string PlayerName { get; }
 
     public SaveData(int score, string name)
@@ -19,25 +22,26 @@ public struct SaveData
 
 public class Results
 {
-    public List<SaveData> _playersResults = new List<SaveData>();
+    public List<SaveData> _playersResults = new();
     const string filepath = @"C:\Games\ApplePicker\save.json";
 
     public void SaveRecord(string name, int score)
     {
         var newRecord = new SaveData(score, name);
+        _playersResults.Add(newRecord);
 
-        foreach (var player in _playersResults)
-        {
-            if (newRecord.PlayerName == player.PlayerName && newRecord.Record > player.Record)
-            {
-                _playersResults.Remove(player);
-                _playersResults.Add(newRecord);
-            }
-            else
-            {
-                _playersResults.Add(newRecord);
-            }
-        }
+        //foreach (var player in _playersResults)
+        //{
+        //    if (newRecord.PlayerName == player.PlayerName && newRecord.Record > player.Record)
+        //    {
+        //        _playersResults.Remove(player);
+        //        _playersResults.Add(newRecord);
+        //    }
+        //    else
+        //    {
+        //        _playersResults.Add(newRecord);
+        //    }
+        //}
     }
 
     public void SaveAllRecords()
@@ -64,7 +68,7 @@ public class Results
         {
             var json = File.ReadAllText(filepath);
             var data = JsonConvert.DeserializeObject<List<SaveData>>(json);
-            _playersResults = data;
+            _playersResults.AddRange(data);
         }
     }
 }

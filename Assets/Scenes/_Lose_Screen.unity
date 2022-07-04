@@ -394,7 +394,7 @@ GameObject:
   - component: {fileID: 257678015}
   - component: {fileID: 257678014}
   m_Layer: 5
-  m_Name: Restart_Butt
+  m_Name: Back_Butt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -467,7 +467,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 876523767}
         m_TargetAssemblyTypeName: UIMenuButtons, Assembly-CSharp
-        m_MethodName: RestartGame
+        m_MethodName: BackToMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -935,6 +935,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   field: {fileID: 0}
+  name: 
 --- !u!1 &921642817
 GameObject:
   m_ObjectHideFlags: 0
@@ -1216,7 +1217,7 @@ GameObject:
   - component: {fileID: 1447239661}
   - component: {fileID: 1447239660}
   m_Layer: 5
-  m_Name: Restart_txt
+  m_Name: Back_txt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1275,7 +1276,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Restart
+  m_Text: Menu
 --- !u!222 &1447239661
 CanvasRenderer:
   m_ObjectHideFlags: 0
