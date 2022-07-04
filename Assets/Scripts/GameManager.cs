@@ -64,6 +64,7 @@ public class GameManager : MonoBehaviour
         {
             SCORE = _score;
             records.SaveRecord(PLAYER_NAME, HIGHSCORE);
+            records.SaveAllRecords();
             SceneManager.LoadScene("_Lose_Screen");
         }
         else

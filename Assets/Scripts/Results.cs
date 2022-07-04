@@ -1,7 +1,6 @@
-using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
-using UnityEngine;
+using Newtonsoft.Json;
 
 [System.Serializable]
 public struct SaveData
@@ -20,12 +19,8 @@ public struct SaveData
 
 public class Results
 {
-    private List<SaveData> _playersResults;
-
-    public Results()
-    {
-        _playersResults = new List<SaveData>();
-    }
+    public List<SaveData> _playersResults = new List<SaveData>();
+    const string filepath = @"C:\Games\ApplePicker\save.json";
 
     public void SaveRecord(string name, int score)
     {
@@ -47,9 +42,9 @@ public class Results
 
     public void SaveAllRecords()
     {
-        string json = JsonConvert.SerializeObject(_playersResults, Formatting.Indented);
+        string json = JsonConvert.SerializeObject(_playersResults);
 
-        File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
+        File.WriteAllText(filepath, json);
     }
 
     public void LoadRecord()
@@ -65,12 +60,11 @@ public class Results
 
     public void LoadAllRecords()
     {
-        string path = Application.persistentDataPath + "/savefile.json";
-        if (File.Exists(path))
+        if (File.Exists(filepath))
         {
-           string json = File.ReadAllText(path);
-           Results allRecords = JsonUtility.FromJson<Results>(json);
-           _playersResults = allRecords._playersResults;
+            var json = File.ReadAllText(filepath);
+            var data = JsonConvert.DeserializeObject<List<SaveData>>(json);
+            _playersResults = data;
         }
     }
 }
