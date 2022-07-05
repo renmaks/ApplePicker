@@ -11,7 +11,8 @@ public struct SaveData
     [JsonProperty("PlayerName")]
     public string PlayerName { get; }
 
-    public SaveData(int score, string name)
+    [JsonConstructor]
+    public SaveData([JsonProperty("HighScore")] int score, [JsonProperty("PlayerName")] string name)
     {
         PlayerName = name;
         Record = score;
@@ -24,6 +25,8 @@ public class Results
 {
     public List<SaveData> _playersResults;
     const string filepath = @"C:\Games\ApplePicker\save.json";
+
+    private bool _isRewrite = false;
 
     public Results()
     {
@@ -42,9 +45,13 @@ public class Results
                 {
                     _playersResults.Remove(player);
                     _playersResults.Add(newRecord);
+                    _isRewrite = true;
                 }
             }
-            _playersResults.Add(newRecord);
+            if (_isRewrite == false)
+            {
+                _playersResults.Add(newRecord);
+            }
         }
         else
         {
