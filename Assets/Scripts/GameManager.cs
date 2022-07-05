@@ -15,13 +15,9 @@ public class GameManager : MonoBehaviour
     private Vector3 _basketPosition = Vector3.up;
     private readonly float _basketYLevel = -12f;
     private List<GameObject> _baskets;
-    private Results records;
 
     private void Awake()
     {
-        records = new();
-        records.LoadAllRecords();
-        records.LoadRecord();
         UIManager.OnApplePick.AddListener(ScoreChange);
         _baskets = new List<GameObject>();
     }
@@ -58,7 +54,6 @@ public class GameManager : MonoBehaviour
         if (_baskets.Count == 0)
         {
             SCORE = _score;
-            records.SaveRecord(PLAYER_NAME, HIGHSCORE);
             SceneManager.LoadScene("_Lose_Screen");
         }
         else
@@ -87,10 +82,5 @@ public class GameManager : MonoBehaviour
             HIGHSCORE = _score;
             UIHighScore.ChangeHighScoreText(HIGHSCORE);
         }
-    }
-
-    public static void ApplyPlayerName(string name)
-    {
-        PLAYER_NAME = name;
     }
 }
