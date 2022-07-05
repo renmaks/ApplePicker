@@ -5,13 +5,12 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject _basketPrefab;
-
-    public static readonly int BASKETS_COUNT = 3;
     public static string PLAYER_NAME { get; private set; }
     public static int HIGHSCORE;
-    public static bool isRecord;
+    public static bool IS_RECORD;
     public static int SCORE { get; private set; }
 
+    private readonly int _basketsCount = 3;
     private int _score = 0;
     private Vector3 _basketPosition = Vector3.up;
     private readonly float _basketYLevel = -12f;
@@ -30,12 +29,11 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         _score = 0;
-        isRecord = false;
+        IS_RECORD = false;
         UIScore.ChangeScoreText(_score);
         UIHighScore.ChangeHighScoreText(HIGHSCORE);
-        Debug.Log($"PlayerName: {PLAYER_NAME}, Record: {HIGHSCORE}");
 
-        for (int i = 0; i < BASKETS_COUNT; i++)
+        for (int i = 0; i < _basketsCount; i++)
         {
             GameObject basket = Instantiate(_basketPrefab);
             basket.transform.position = _basketPosition * _basketYLevel;
@@ -47,11 +45,6 @@ public class GameManager : MonoBehaviour
     }
 
     public void AppleDestroyed()
-    {
-        DestroyCurrentBasket();
-    }
-
-    public void EnemyAppleDestroyed()
     {
         DestroyCurrentBasket();
     }
@@ -90,7 +83,7 @@ public class GameManager : MonoBehaviour
         UIScore.ChangeScoreText(_score);
         if (_score > HIGHSCORE)
         {
-            isRecord = true;
+            IS_RECORD = true;
             HIGHSCORE = _score;
             UIHighScore.ChangeHighScoreText(HIGHSCORE);
         }
@@ -100,44 +93,4 @@ public class GameManager : MonoBehaviour
     {
         PLAYER_NAME = name;
     }
-
-    //[System.Serializable]
-    //public struct SaveData
-    //{
-    //    public int Record;
-    //    public string PlayerName;
-
-    //    public SaveData(int score, string name)
-    //    {
-    //        PlayerName = name;
-    //        Record = score;
-    //    }
-    //}
-
-    //public void SaveRecord()
-    //{
-    //    SaveData data = new()
-    //    {
-    //        Record = _highScore,
-    //        PlayerName = PLAYER_NAME
-    //    };
-
-    //    string json = JsonUtility.ToJson(data);
-
-    //    File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
-    //}
-
-    //public void LoadRecord()
-    //{
-    //    string path = Application.persistentDataPath + "/savefile.json";
-    //    if (File.Exists(path))
-    //    {
-    //        string json = File.ReadAllText(path);
-    //        SaveData data = JsonUtility.FromJson<SaveData>(json);
-
-    //        _highScore = data.Record;
-    //        PLAYER_NAME = data.PlayerName;
-    //    }
-    //}
-
 }

@@ -6,7 +6,6 @@ public class AppleTree : MonoBehaviour
     [SerializeField] private GameObject _applePrefab;
     [SerializeField] private GameObject _enemyAppleFrefab;
 
-    
     private readonly float _leftAndRightEdge = 10f;
     private readonly float _chanceToChangeDirections = 0.01f;
     private readonly float _difficultyScale = 0.09f;
@@ -15,6 +14,12 @@ public class AppleTree : MonoBehaviour
     private float _secondsBetweenApplesDrops = 1f;
     private float _chanceToEnemyAppleDrop = 0.03f;
     private float _speed = 17f;
+    private Rigidbody rb;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
 
     private void Start()
     {
@@ -41,26 +46,25 @@ public class AppleTree : MonoBehaviour
     private void Update()
     {
         Vector3 pos = transform.position;
-        pos.x += _speed * Time.deltaTime;
-        transform.position = pos;
 
-        if (pos.x < -_leftAndRightEdge)
+        if (pos.x < -_leftAndRightEdge) // Turn right
         {
-            _speed = Mathf.Abs(_speed); // Turn right
+            _speed = Mathf.Abs(_speed); 
         }
         else if (pos.x > _leftAndRightEdge) // Turn left
         {
             _speed = -Mathf.Abs(_speed);
         }
 
+        if (Random.value < _chanceToChangeDirections) // Change direction
+        {
+            _speed *= -1;
+        }
     }
 
-     private void FixedUpdate()
+    private void FixedUpdate()
     {
-        if (Random.value < _chanceToChangeDirections)
-        {
-            _speed *= -1; // Change direction
-        }
+        rb.velocity = new Vector3(_speed, 0, 0);
     }
 
     IEnumerator DoCheck()

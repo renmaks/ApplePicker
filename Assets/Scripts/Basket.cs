@@ -22,14 +22,14 @@ public class Basket : MonoBehaviour
         _xRight = _rightTop.x;
     }
 
-    private void Update()
+    private void Update() // Move basket with mouse
     {
-        Vector3 mousePos2D = Input.mousePosition;
-        mousePos2D.z = -Camera.main.transform.position.z;
-        Vector2 mousePos3D = Camera.main.ScreenToWorldPoint(mousePos2D);
+        Vector3 mousePos3D = Input.mousePosition;
+        mousePos3D.z = -Camera.main.transform.position.z;
+        Vector2 mousePos2D = Camera.main.ScreenToWorldPoint(mousePos3D);
 
         Vector2 pos = transform.position;
-        pos.x = Mathf.Clamp(mousePos3D.x, _xLeft + _xLimit, _xRight - _xLimit);
+        pos.x = Mathf.Clamp(mousePos2D.x, _xLeft + _xLimit, _xRight - _xLimit);
         transform.position = pos;
     }
 

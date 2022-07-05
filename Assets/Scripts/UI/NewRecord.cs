@@ -12,7 +12,7 @@ public class NewRecord : MonoBehaviour
 
     private void Start()
     {
-        if (GameManager.isRecord)
+        if (GameManager.IS_RECORD)
         {
             newRecord.text = "New Record!";
         }

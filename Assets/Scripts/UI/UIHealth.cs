@@ -8,17 +8,12 @@ public class UIHealth : MonoBehaviour
     private void Awake()
     {
         _hp = GetComponent<Text>();
-        _hp.text = "HP: " + GameManager.BASKETS_COUNT;
+        _hp.text = "HP: 3";
         UIManager.OnBasketDestroy.AddListener(ChangeHPText);
     }
 
     private void ChangeHPText(int hp)
     {
         _hp.text = $"HP: {hp}";
-    }
-
-    private void OnDisable()
-    {
-        UIManager.OnBasketDestroy.RemoveListener(ChangeHPText);
     }
 }

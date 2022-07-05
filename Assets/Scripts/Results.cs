@@ -87,8 +87,7 @@ public class Results
         if (File.Exists(filepath))
         {
             var json = File.ReadAllText(filepath);
-            var data = JsonConvert.DeserializeObject<List<SaveData>>(json);
-            _playersResults = new List<SaveData>(data);
+            _playersResults = JsonConvert.DeserializeObject<List<SaveData>>(json);
         }
     }
 }

@@ -11,5 +11,4 @@ public class EnemyApple : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-
 }
