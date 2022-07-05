@@ -43,7 +43,7 @@ public class Results
         {
                 for (int i = 0; i < _playersResults.Count; i++)
                 {
-                    if (newRecord.PlayerName == _playersResults[i].PlayerName && newRecord.Record > _playersResults[i].Record)
+                    if (newRecord.PlayerName == _playersResults[i].PlayerName && newRecord.Record >= _playersResults[i].Record)
                     {
                         _playersResults.Remove(_playersResults[i]);
                         _playersResults.Add(newRecord);
