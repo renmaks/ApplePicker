@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
         isRecord = false;
         UIScore.ChangeScoreText(_score);
         UIHighScore.ChangeHighScoreText(HIGHSCORE);
+        Debug.Log($"PlayerName: {PLAYER_NAME}, Record: {HIGHSCORE}");
 
         for (int i = 0; i < BASKETS_COUNT; i++)
         {

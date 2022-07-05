@@ -26,7 +26,8 @@ public class Results
     public List<SaveData> _playersResults;
     const string filepath = @"C:\Games\ApplePicker\save.json";
 
-    private bool _isRewrite = false;
+    private bool _isRewrite;
+    private bool _isRecordChange;
 
     public Results()
     {
@@ -37,17 +38,18 @@ public class Results
     {
         var newRecord = new SaveData(score, name);
 
+        _isRewrite = false;
         if (_playersResults.Count != 0)
         {
-            foreach (var player in _playersResults)
-            {
-                if (newRecord.PlayerName == player.PlayerName && newRecord.Record > player.Record)
+                for (int i = 0; i < _playersResults.Count; i++)
                 {
-                    _playersResults.Remove(player);
-                    _playersResults.Add(newRecord);
-                    _isRewrite = true;
+                    if (newRecord.PlayerName == _playersResults[i].PlayerName && newRecord.Record > _playersResults[i].Record)
+                    {
+                        _playersResults.Remove(_playersResults[i]);
+                        _playersResults.Add(newRecord);
+                        _isRewrite = true;
+                    }
                 }
-            }
             if (_isRewrite == false)
             {
                 _playersResults.Add(newRecord);
@@ -65,12 +67,18 @@ public class Results
 
     public void LoadRecord()
     {
-        foreach (var player in _playersResults)
-        {
-            if (player.PlayerName == GameManager.PLAYER_NAME)
+        _isRecordChange = false;
+            foreach (var player in _playersResults)
             {
-                GameManager.HIGHSCORE = player.Record;
+                if (player.PlayerName == GameManager.PLAYER_NAME)
+                {
+                    GameManager.HIGHSCORE = player.Record;
+                    _isRecordChange = true;
+                }
             }
+        if (_isRecordChange != true)
+        {
+            GameManager.HIGHSCORE = 0;
         }
     }
 
@@ -80,7 +88,7 @@ public class Results
         {
             var json = File.ReadAllText(filepath);
             var data = JsonConvert.DeserializeObject<List<SaveData>>(json);
-            _playersResults.AddRange(data);
+            _playersResults = new List<SaveData>(data);
         }
     }
 }
