@@ -22,30 +22,35 @@ public struct SaveData
 
 public class Results
 {
-    public List<SaveData> _playersResults = new();
+    public List<SaveData> _playersResults;
     const string filepath = @"C:\Games\ApplePicker\save.json";
+
+    public Results()
+    {
+        _playersResults = new();
+    }
 
     public void SaveRecord(string name, int score)
     {
         var newRecord = new SaveData(score, name);
-        _playersResults.Add(newRecord);
 
-        //foreach (var player in _playersResults)
-        //{
-        //    if (newRecord.PlayerName == player.PlayerName && newRecord.Record > player.Record)
-        //    {
-        //        _playersResults.Remove(player);
-        //        _playersResults.Add(newRecord);
-        //    }
-        //    else
-        //    {
-        //        _playersResults.Add(newRecord);
-        //    }
-        //}
-    }
+        if (_playersResults.Count != 0)
+        {
+            foreach (var player in _playersResults)
+            {
+                if (newRecord.PlayerName == player.PlayerName && newRecord.Record > player.Record)
+                {
+                    _playersResults.Remove(player);
+                    _playersResults.Add(newRecord);
+                }
+            }
+            _playersResults.Add(newRecord);
+        }
+        else
+        {
+            _playersResults.Add(newRecord);
+        }
 
-    public void SaveAllRecords()
-    {
         string json = JsonConvert.SerializeObject(_playersResults);
 
         File.WriteAllText(filepath, json);

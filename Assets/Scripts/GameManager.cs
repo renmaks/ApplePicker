@@ -16,10 +16,11 @@ public class GameManager : MonoBehaviour
     private Vector3 _basketPosition = Vector3.up;
     private readonly float _basketYLevel = -12f;
     private List<GameObject> _baskets;
-    readonly Results records = new();
+    private Results records;
 
     private void Awake()
     {
+        records = new();
         records.LoadAllRecords();
         records.LoadRecord();
         UIManager.OnApplePick.AddListener(ScoreChange);
@@ -64,7 +65,6 @@ public class GameManager : MonoBehaviour
         {
             SCORE = _score;
             records.SaveRecord(PLAYER_NAME, HIGHSCORE);
-            records.SaveAllRecords();
             SceneManager.LoadScene("_Lose_Screen");
         }
         else
